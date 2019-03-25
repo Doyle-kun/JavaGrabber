@@ -1,0 +1,64 @@
+plugins {
+    id "org.springframework.boot" version "2.1.1.RELEASE"
+    id 'org.jetbrains.kotlin.jvm' version '1.3.21'
+}
+
+repositories {
+    mavenCentral()
+    jcenter()
+    maven { url "https://repo.spring.io/snapshot" }
+    maven { url "https://repo.spring.io/milestone" }
+}
+    apply plugin: 'idea'
+    apply plugin: 'java'
+    apply plugin: 'scala'
+    apply plugin: 'groovy'
+    apply plugin: 'io.spring.dependency-management'
+
+    group = 'pl.example'
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    dependencyManagement {
+        imports {
+            mavenBom 'org.springframework:spring-framework-bom:5.1.4.RELEASE'
+        }
+        dependencies {
+            dependency group: 'org.projectlombok', name: 'lombok', version: '1.16.20'
+            dependency group: 'org.mockito', name: 'mockito-junit-jupiter', version: '2.21.0'
+            dependency group: 'com.fasterxml.jackson.module', name: 'jackson-module-kotlin', version: '2.9.8'
+            dependency group: 'org.scala-lang', name: 'scala-library', version: '2.12.8'
+            dependency group: 'org.spockframework', name: 'spock-core', version: '1.2-groovy-2.4'
+            dependency group: 'org.spockframework', name: 'spock-spring', version: '1.2-groovy-2.4'
+
+        }
+    }
+    dependencies {
+        implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web'
+        // UTILITIES
+        compileOnly group: 'org.projectlombok', name: 'lombok'
+        implementation group: 'org.apache.commons', name: 'commons-lang3'
+        implementation group: 'com.fasterxml.jackson.module', name: 'jackson-module-kotlin'
+        implementation group: 'org.scala-lang', name: 'scala-library'
+        compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+        //TESTS
+        testImplementation group: 'org.springframework', name: 'spring-test'
+        testImplementation group: 'org.mockito', name: 'mockito-junit-jupiter'
+        testImplementation group: 'org.mockito', name: 'mockito-core'
+        testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api'
+        testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-params'
+        testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine'
+        testRuntimeOnly 'org.junit.vintage:junit-vintage-engine'
+        testImplementation group: 'org.spockframework', name: 'spock-core'
+        testImplementation group: 'org.spockframework', name: 'spock-spring'
+    }
+    compileKotlin {
+        kotlinOptions {
+            jvmTarget = "1.8"
+        }
+    }
+    compileTestKotlin {
+        kotlinOptions {
+            jvmTarget = "1.8"
+        }
+    }
