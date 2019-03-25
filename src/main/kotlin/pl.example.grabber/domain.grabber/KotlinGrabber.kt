@@ -4,9 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import org.springframework.core.ParameterizedTypeReference
 import org.springframework.http.HttpMethod
 import org.springframework.web.client.RestTemplate
-import pl.example.grabber.common.ApplicationConstants.BASE_PATH
-import pl.example.grabber.common.ApplicationConstants.TARGET_URL
-import pl.example.grabber.common.ApplicationConstants.KOTLIN
+import pl.example.grabber.common.ApplicationConstants.*
 import pl.example.grabber.common.Grabber
 import pl.example.grabber.common.model.Post
 import java.io.File
@@ -34,7 +32,7 @@ class KotlinGrabber : Grabber {
 
     private fun createFile(post: Post) {
         createDirectory()
-        mapper.writeValue(File(BASE_PATH + KOTLIN + "/user_" + post.accessPrivateField("userId") + "_post_" + post.accessPrivateField("id")), post)
+        mapper.writeValue(File(BASE_PATH + KOTLIN + USER_PATH_PREFIX + post.accessPrivateField("userId") + USER_POST_NUMBER_PREFIX + post.accessPrivateField("id")), post)
     }
 
     private fun createDirectory() {

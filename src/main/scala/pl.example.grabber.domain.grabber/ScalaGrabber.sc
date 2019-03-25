@@ -1,8 +1,6 @@
 package pl.example.grabber.domain.grabber
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import lombok.Getter
-import lombok.SneakyThrows
 import org.springframework.core.ParameterizedTypeReference
 import org.springframework.http.HttpMethod
 import org.springframework.web.client.RestTemplate
@@ -12,6 +10,8 @@ import java.util
 
 import pl.example.grabber.common.ApplicationConstants.BASE_PATH
 import pl.example.grabber.common.ApplicationConstants.TARGET_URL
+import pl.example.grabber.common.ApplicationConstants.USER_PATH_PREFIX
+import pl.example.grabber.common.ApplicationConstants.USER_POST_NUMBER_PREFIX
 import pl.example.grabber.common.ApplicationConstants.SCALA
 
 class ScalaGrabber() {
@@ -33,7 +33,7 @@ class ScalaGrabber() {
 
   private def createFile(post: Post): Unit = {
     createDirectory()
-    mapper.writeValue(new File(BASE_PATH + SCALA + "/user_" + post.getUserId + "_post_" + post.getId), post)
+    mapper.writeValue(new File(BASE_PATH + SCALA + USER_PATH_PREFIX + post.getUserId + USER_POST_NUMBER_PREFIX + post.getId), post)
   }
 
   private def createDirectory(): Unit = {

@@ -14,7 +14,7 @@ import static pl.example.grabber.common.ApplicationConstants.*
 @Slf4j
 class GrabberSpec extends Specification {
 
-    private static final String REGEX_PATTERN = "/user_(\\\\d+)_post_(\\\\d+)"
+    private static final String REGEX_PATTERN = USER_PATH_PREFIX +"(\\\\d+)"+ USER_POST_NUMBER_PREFIX + "(\\\\d+)"
     @Shared
     def javaGrabber
     @Shared

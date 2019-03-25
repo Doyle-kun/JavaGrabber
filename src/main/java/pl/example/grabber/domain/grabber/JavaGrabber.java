@@ -14,9 +14,7 @@ import pl.example.grabber.common.model.Post;
 import java.io.File;
 import java.util.List;
 
-import static pl.example.grabber.common.ApplicationConstants.BASE_PATH;
-import static pl.example.grabber.common.ApplicationConstants.JAVA;
-import static pl.example.grabber.common.ApplicationConstants.TARGET_URL;
+import static pl.example.grabber.common.ApplicationConstants.*;
 
 @Slf4j
 @NoArgsConstructor
@@ -43,7 +41,7 @@ public class JavaGrabber implements Grabber {
     @SneakyThrows
     private void createFile(Post post) {
         createDirectory();
-        mapper.writeValue(new File(BASE_PATH+ JAVA + "/user_" + post.getUserId() + "_post_" + post.getId()), post);
+        mapper.writeValue(new File(BASE_PATH + JAVA + USER_PATH_PREFIX + post.getUserId() + USER_POST_NUMBER_PREFIX + post.getId()), post);
     }
 
     private void createDirectory() {
